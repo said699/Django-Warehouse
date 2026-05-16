@@ -1,0 +1,9 @@
+{% extends 'organizations/base.html' %}
+
+{% block title %}Поступление продукта!{% endblock %}
+
+{% block content %}
+    {% for product in products %}
+        {{ product.name }}
+    {% endfor %}
+{% endblock %}

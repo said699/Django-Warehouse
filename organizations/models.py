@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
 
 CURRENCY_CHOICES = [
@@ -9,6 +9,7 @@ CURRENCY_CHOICES = [
 ]
 
 class Organization(AbstractUser):
+    username = None
     name = models.CharField(max_length=90, verbose_name='Название вашей организации')
     inn = models.CharField(max_length=12, unique=True, verbose_name='ИНН')
     phone = PhoneNumberField(region="RU", verbose_name='Номер телефона')
@@ -16,6 +17,9 @@ class Organization(AbstractUser):
     logo = models.ImageField(upload_to='organizations_logo/%Y/%m/%d', verbose_name='Логотип', blank=True, null=True)
     currency = models.CharField(choices=CURRENCY_CHOICES, max_length=3, verbose_name='Валюта учёта')
     address = models.TextField(verbose_name='Адрес склада')
+
+    USERNAME_FIELD = 'inn'
+    REQUIRED_FIELDS = ['name']
 
     class Meta:
         verbose_name = 'Организация'
