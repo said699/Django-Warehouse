@@ -1,0 +1,39 @@
+{% extends 'organizations/base.html' %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+    <h1>Вход в аккаунт организации</h1>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="field">
+            <label for="{{ form.name.id_for_label }}">Название вашей организации</label>
+            {{ form.name }}
+            {% if form.name.errors %}
+                <div class="error">{{ form.name.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="field">
+            <label for="{{ form.inn.id_for_label }}">ИНН вашей организации</label>
+            {{ form.inn }}
+            {% if form.inn.errors %}
+                <div class="error">{{ form.inn.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="field">
+            <label for="{{ form.password.id_for_label }}">Пароль</label>
+            {{ form.password }}
+            {% if form.password.errors %}
+                <div class="error">{{ form.password.errors }}</div>
+            {% endif %}
+        </div>
+
+        <input type="checkbox" name="remember_me">
+        <label for="remember_me">Запомнить меня</label>
+
+        <button type="submit">Войти</button>
+    </form>
+{% endblock %}

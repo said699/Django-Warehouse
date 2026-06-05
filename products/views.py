@@ -6,7 +6,7 @@ from .models import Product
 @login_required
 def add_product(request):
     if request.method == 'POST':
-        form = AddProductForm(request.POST)
+        form = AddProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save(commit=False)
             product.owner = request.user

@@ -1,28 +1,24 @@
 from django import forms
-from .models import Organization
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from .models import Seller
+
+class SellerRegisterForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Seller
+        fields = ('email', 'name', 'phone', 'address')
 
 
-class OrganizationRegisterForm(forms.ModelForm):
-    password1 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Ваш пароль'}))
-    password2 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Повторите ваш пароль'}))
-    
+class SellerLoginForm(AuthenticationForm):
+    username = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Ваш пароль'}))
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder': 'Введите Email'}))
+
+class SellerUpdateForm(forms.ModelForm):
     class Meta:
-        model = Organization
-        fields = ('inn', 'password1', 'password2', 'name', 'phone', 'currency', 'website', 'logo', 'address')
+        model = Seller
+        fields = ('name', 'email', 'phone', 'address')
 
-    def save(self, commit=True):
-        organization = super().save(commit=False)
-        organization.username = None
-        organization.set_password(self.cleaned_data["password1"])
-        if commit:
-            organization.save()
-        return organization
-    
-    def clean(self):
-        cleaned_data = super().clean()
-        p1 = cleaned_data.get("password1")
-        p2 = cleaned_data.get("password2")
-
-        if p1 and p2 and p1 != p2:
-            raise forms.ValidationError("Пароли не совпадают!")
-        return cleaned_data
+    def clean_email(self):
+        email = self.cleaned_data.get(email)
+        if Seller.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
+            raise forms.ValidationError('Этот email уже используется!')
+        return email
