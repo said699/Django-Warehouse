@@ -1,0 +1,45 @@
+{% extends 'sellers/base.html' %}
+
+{% block title %}Измение данных аккаунта{% endblock %}
+
+{% block content %}
+    <h1>Измение данных аккаунта</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="field">
+            <label for="{{ form.email.id_for_label }}">Ваш email</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                <div class="error">{{ form.email.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="field">
+            <label for="{{ form.name.id_for_label }}">Ваше имя</label>
+            {{ form.name }}
+            {% if form.name.errors %}
+                <div class="error">{{ form.name.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="field">
+            <label for="{{ form.phone.id_for_label }}">Ваш номер телефона</label>
+            {{ form.phone }}
+            {% if form.phone.errors %}
+                <div class="error">{{ form.phone.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="field">
+            <label for="{{ form.address.id_for_label }}">Ваш адрес</label>
+            {{ form.address }}
+            {% if form.address.errors %}
+                <div class="error">{{ form.address.errors }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit">Изменить!</button>
+    </form>
+    <a href="{% url 'sellers:delete_acc' %}">Удалить аккаунт</a>
+    <a href="{% url 'sellers:logout' %}">Выйти из аккаунта</a>
+{% endblock %}

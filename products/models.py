@@ -7,11 +7,12 @@ class Product(models.Model):
     indeficator = models.CharField(max_length=100, unique=True, verbose_name='Индефикатор товара')
     price_of_one = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, verbose_name='Цена')
     count = models.PositiveIntegerField(default=0, verbose_name='Количество')
+    currency = models.CharField(max_length=5, default='so`m')
     manufacturer = models.CharField(max_length=100, verbose_name='Производитель')
     created_at = models.DateField(verbose_name='Дата изготовления')
     description = models.TextField(verbose_name='Описание')
     is_active = models.BooleanField(default=True, verbose_name='В продаже')
-    image = models.ImageField(upload_to='products/%Y/%m/%d', verbose_name='Изображение', blank=True, null=True)
+    image = models.ImageField(upload_to='products/%Y/%m/%d', verbose_name='Изображение', null=True)
 
     class Meta:
         verbose_name = 'Товар'

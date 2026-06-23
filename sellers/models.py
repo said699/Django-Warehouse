@@ -35,7 +35,7 @@ class Seller(AbstractUser):
     objects = MySellerManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = ['name', 'phone']
 
     class Meta:
         verbose_name = 'Продавец'

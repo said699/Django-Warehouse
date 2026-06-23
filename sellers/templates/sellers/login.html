@@ -1,4 +1,4 @@
-{% extends 'organizations/base.html' %}
+{% extends 'sellers/base.html' %}
 
 {% block title %}Авторизация{% endblock %}
 
@@ -6,20 +6,11 @@
     <h1>Вход в аккаунт организации</h1>
     <form method="POST">
         {% csrf_token %}
-        
         <div class="field">
-            <label for="{{ form.name.id_for_label }}">Название вашей организации</label>
-            {{ form.name }}
-            {% if form.name.errors %}
-                <div class="error">{{ form.name.errors }}</div>
-            {% endif %}
-        </div>
-        
-        <div class="field">
-            <label for="{{ form.inn.id_for_label }}">ИНН вашей организации</label>
-            {{ form.inn }}
-            {% if form.inn.errors %}
-                <div class="error">{{ form.inn.errors }}</div>
+            <label for="{{ form.username.id_for_label }}">Email вашей организации</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                <div class="error">{{ form.username.errors }}</div>
             {% endif %}
         </div>
         

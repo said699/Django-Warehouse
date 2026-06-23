@@ -1,3 +1,7 @@
 /venv
 .env
 .vscode/
+.idea/
+debug.log
+requirements.txt
+media/

@@ -1,7 +1,21 @@
-{% extends 'organizations/base.html' %}
+{% extends 'sellers/base.html' %}
 
 {% block title %}Информация о товаре{% endblock %}
 
 {% block content %}
-    <h1>Название товара - {{ product.name }}</h1> 
+    <img src="{{ product.image.url }}" class="image-prod"></img>
+    <h1>Название товара - {{ product.name }}</h1>
+    <p>Производитель - {{ product.manufacturer }} </p>
+    <p>Дата изготовления - {{ product.created_at }}</p>
+    <p>Количество единиц товара - {{ product.count }}</p>
+    <p>Цена за одну единицу товара - {{ product.price_of_one }}</p>
+    <p>Полная цена - {{ product.total_price }}</p>
+    <p>Описание товара - {{ product.description }}</p>
+    <p>Индификатор товара - {{ product.indeficator }}</p>
+
+    {% if product.is_active %}
+        <p>Товар в продаже!<p>
+    {% else %}
+        <p>Товар не в продаже!</p>
+    {% endif %}
 {% endblock %}

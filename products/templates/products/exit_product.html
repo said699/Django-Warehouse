@@ -1,10 +1,10 @@
 {% extends 'sellers/base.html' %}
 
-{% block title %}Поступление продукта!{% endblock %}
+{% block title %}Уход товара{% endblock %}
 
 {% block content %}
 <div class="container">
-    <h2>Поступление продукта!</h2>
+    <h2>Увоз продукта</h2>
 
     {% if form.non_field_errors %}
         <div class="alert alert-danger">
@@ -34,7 +34,7 @@
         {% endfor %}
 
         <div class="mt-4">
-            <button type="submit" class="btn btn-primary">Сохранить продукт</button>
+            <button type="submit" class="btn btn-primary">Снять продукт</button>
         </div>
     </form>
 </div>

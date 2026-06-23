@@ -1,4 +1,4 @@
-{% extends 'organizations/base.html' %}
+{% extends 'sellers/base.html' %}
 
 {% block title %}Регистрация{% endblock %}
 
@@ -16,10 +16,10 @@
         </div>
         
         <div class="field">
-            <label for="{{ form.inn.id_for_label }}">ИНН вашей организации</label>
-            {{ form.inn }}
-            {% if form.inn.errors %}
-                <div class="error">{{ form.inn.errors }}</div>
+            <label for="{{ form.email.id_for_label }}">Email вашей организации</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                <div class="error">{{ form.email.errors }}</div>
             {% endif %}
         </div>
         
@@ -28,30 +28,6 @@
             {{ form.phone }}
             {% if form.phone.errors %}
                 <div class="error">{{ form.phone.errors }}</div>
-            {% endif %}
-        </div>
-        
-        <div class="field">
-            <label for="{{ form.currency.id_for_label }}">Основная валюта вашей организации</label>
-            {{ form.currency }}
-            {% if form.currency.errors %}
-                <div class="error">{{ form.currency.errors }}</div>
-            {% endif %}
-        </div>
-        
-        <div class="field">
-            <label for="{{ form.website.id_for_label }}">Сайт вашей организации</label>
-            {{ form.website }}
-            {% if form.website.errors %}
-                <div class="error">{{ form.website.errors }}</div>
-            {% endif %}
-        </div>
-        
-        <div class="field">
-            <label for="{{ form.logo.id_for_label }}">Логотип вашей организации</label>
-            {{ form.logo }}
-            {% if form.logo.errors %}
-                <div class="error">{{ form.logo.errors }}</div>
             {% endif %}
         </div>
         

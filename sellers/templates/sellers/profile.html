@@ -1,0 +1,20 @@
+{% extends 'sellers/base.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+
+{% block content %}
+    <h1>Здравствуйте {{ user.name }}</h1 >
+    
+    <button style="margin-left: 200px;" hx-get="{% url 'products:products_list' %}" hx-target="#products-list" 
+    hx-swap="innerHTML"
+    class="btn-list">Показать список товаров на складе</button>
+    <div style="margin-left: 200px;" id="products-list" class="prod-list"></div>
+
+    <div style="display: flex; flex-direction: row; gap: 20px;">
+        <a href="{% url 'products:add_product' %}">Поступление товара</a>
+        <a href="{% url 'sellers:profile_update' %}">Измениние данных аккаунта</a>
+        <a href="{% url 'products:exit_product' %}">Уход товара со склада</a>
+    </div>
+
+{% endblock %}

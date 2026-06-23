@@ -1,9 +1,0 @@
-{% extends 'organizations/base.html' %}
-
-{% block title %}Список товаров{% endblock %}
-
-{% block content %}
-    {% for product in products %}
-        <a href="{% url 'products:product_info' product.pk %}">{{ product.name }}</a>
-    {% endfor %}
-{% endblock %}
